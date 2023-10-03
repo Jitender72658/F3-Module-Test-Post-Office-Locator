@@ -10,15 +10,19 @@ let longi;
 let lati;
 let postOfficeList;
 async function fetchIpAddress(){
-      const url =  `https://ipinfo.io?token=${token}`;
-      const response = await fetch(url);
-      const ipDetails = await response.json();
-      const dataUrl = `https://ipapi.co/${ipDetails.ip}/json/`;
-       const data = await fetch(dataUrl);
-       const extractedData =await data.json();
-       console.log(extractedData);
-      displayAddressDetails(extractedData);
-      loadMap();
+     try{
+        const url =  `https://ipinfo.io?token=${token}`;
+        const response = await fetch(url);
+        const ipDetails = await response.json();
+        const dataUrl = `https://ipapi.co/${ipDetails.ip}/json/`;
+        const data = await fetch(dataUrl);
+        const extractedData =await data.json();
+        displayAddressDetails(extractedData);
+        loadMap();
+     }
+     catch(error){
+        console.log(error, "Error in getting ip address");
+     }  
 }
 function loadMap(){
     map.src = `https://maps.google.com/maps?q=${lati}, ${longi}&output=embed`;
@@ -41,24 +45,34 @@ function displayAddressDetails(details){
 
 function displayMoreDetails(details){
       moreInfoContent.innerHTML = `<p>Time Zone: ${details.timezone}</p>
-                                   <p> Date and Time: ${2}</p>
+                                   <p id="dateAndTime"></p>
                                    <p>Pincode: ${details.postal}</p>
                                    <p id="messageDetails"></p>`;
+       displayDateAndTime(details.timezone);
+}
+function displayDateAndTime(timezone){
+    const options = { timeZone: timezone, year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    const currentDate = new Date().toLocaleString(undefined, options);
+    let currDateAndTimeTag = document.getElementById('dateAndTime');
+    currDateAndTimeTag.innerText = `Date and Time: ${currentDate}`;
 }
 
 async function fetchNearbyPostOffices(pincode){
     url = `https://api.postalpincode.in/pincode/${pincode}`;
-    const response = await fetch(url);
-    const result = await response.json();
-    postOfficeList = result[0].PostOffice;
-    displayNearbyPostOffices(postOfficeList);
-    const messageDetails = document.getElementById('messageDetails');
-    console.log(messageDetails);
-    messageDetails.innerText = `Message: ${result[0].Message}`;
-
+    try{
+        const response = await fetch(url);
+        const result = await response.json();
+        postOfficeList = result[0].PostOffice;
+        displayNearbyPostOffices(postOfficeList);
+        const messageDetails = document.getElementById('messageDetails');
+        messageDetails.innerText = `Message: ${result[0].Message}`;    
+    }
+    catch(error){
+        console.log(error, "Error in get post offices list");
+    }
+    
 }
 function displayNearbyPostOffices(postOffices){
-    console.log(postOffices);
      postOfficesListContainer.innerHTML = '';
      postOffices.forEach((postOffice) => {
         const postOfficeDiv = document.createElement('div');

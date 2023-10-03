@@ -1,13 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Mulish&family=Poppins&display=swap');
 body{
     background-color: black;
     color: white;
+    font-family: popins, sans-serif;
 }
 #ipAddressDiv{
     font-size: 24px;
     padding-left: 50px;
     margin-top: 40px;
-    color: #B8BCCC80;
-    
+    color: #B8BCCC80;  
 }
 #ipAddressVal{
     color: #B8BCCC;
@@ -21,7 +22,6 @@ body{
     color: #B8BCCC80;
     margin: 50px 0px;
     row-gap: 30px;
-
  }
  #map{
     width:100%;
@@ -32,6 +32,12 @@ body{
     padding: 150px 4vw;
     background-color: #575A85;
  }
+ #search-icon{
+    position: relative;
+    top: 4px;
+    left: 40px;
+    width: 20px;
+ }
  #searchInput{
     width: 90%;
     height: 40px;
@@ -40,6 +46,7 @@ body{
     background-color: transparent;
     padding-left: 65px;
     color: white;
+    border-radius: 5px;
  }
  #searchInput:focus{
     outline: none;
