@@ -70,14 +70,15 @@ body{
  .postOfficeDiv{
     background-color: #575A85;
     padding:20px 30px;
-    width: 90%;
     color: #B8BCCC;
     border-radius: 5px;
     font-size: 24px;
+    min-width: 400px;
  }
  #postOfficesDetailsContainer{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
     border-radius: 5px;
     padding: 5px 50px;
@@ -85,13 +86,22 @@ body{
  }
  @media (max-width: 1200px){
     #postOfficesDetailsContainer{
-        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
-        border-radius: 5px;
         padding: 5px 20px;
         margin-bottom: 30px;
-        box-sizing: border-box;
      }
+     #searchInput{
+      width: 80%;
+      height: 30px;
+      font-size: 18px;
+      padding-left: 40px;
+   }
+   #search-icon{
+      position: relative;
+      top: 4px;
+      left: 40px;
+      width: 20px;
+   }
  }
  @media (max-width: 720px){
     #addressDetailsContainer{
@@ -112,7 +122,7 @@ body{
         padding-left: 20px;
     }
     #postOfficesDetailsContainer{
-        grid-template-columns: repeat(2, 1fr);
+        /* grid-template-columns: repeat(2, 1fr); */
         gap: 20px;
         column-gap: 10px;
         border-radius: 5px;
@@ -121,7 +131,7 @@ body{
      }
      .postOfficeDiv{
         padding:20px 30px;
-        width: 90%;
+        min-width: 300px;
         color: #B8BCCC;
         border-radius: 5px;
         font-size: 16px;
@@ -136,9 +146,15 @@ body{
         grid-template-columns: repeat(1, 1fr);
      }
      #postOfficesDetailsContainer{
-        grid-template-columns: repeat(1, 1fr);
         gap: 20px;
         border-radius: 5px;
         margin-bottom: 30px;
      }
+     .postOfficeDiv{
+      padding:20px 30px;
+      min-width: 80%;
+      color: #B8BCCC;
+      border-radius: 5px;
+      font-size: 16px;
+   }
  }

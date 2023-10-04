@@ -9,12 +9,18 @@ const token = 'b077d39e5618dd';
 let longi;
 let lati;
 let postOfficeList;
+let domain;
 async function fetchIpAddress(){
      try{
         const url =  `https://ipinfo.io?token=${token}`;
         const response = await fetch(url);
         const ipDetails = await response.json();
         const dataUrl = `https://ipapi.co/${ipDetails.ip}/json/`;
+        const domainMatch = dataUrl.match(/^(?:https?:\/\/)?(?:www\.)?([^\/]+)/);
+       if (domainMatch && domainMatch.length > 1) {
+        // Extract the matched domain (the second element in the array)
+              domain = domainMatch[1];
+         }
         const data = await fetch(dataUrl);
         const extractedData =await data.json();
         displayAddressDetails(extractedData);
@@ -37,7 +43,7 @@ function displayAddressDetails(details){
                                 <span>Organisation: ${details.org}</span>
                                 <span>Long: ${longi}</span>
                                 <span>Region: ${details.region}</span>
-                                <span>Hostname: </span>`;
+                                <span>Hostname: ${domain}</span>`;
       displayMoreDetails(details);
       fetchNearbyPostOffices(details.postal);
     
