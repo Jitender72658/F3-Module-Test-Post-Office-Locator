@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Mulish&family=Poppins&display=swap');
+body{
+    font-family: poppins, sans-serif !important;
+}
 #main-page-container{
     display: flex;
     justify-content: center;
@@ -29,7 +32,6 @@
     margin: 10px auto;
 }
 #page-info{
-    font-family: Inter;
     font-size: 24px;
     font-weight: 400;
     line-height: 29px;
@@ -39,7 +41,6 @@
     margin: 40px 0px 80px 0px;
 }
 #page-heading{
-    font-family: Montserrat;
     font-size: 36px;
     font-weight: 700;
     line-height: 44px;
@@ -48,7 +49,6 @@
     color: #575A85;  
 }
 #IpAddressContent, #IpAddressValue{
-    font-family: Inter;
     font-size: 26px;
     font-weight: 500;
 }
@@ -95,13 +95,10 @@
         padding-left: 5%;
     }
     #page-heading{
-        font-family: Montserrat;
         font-size: 24px;
-        text-align: left;
         color: #575A85;  
     }
     #page-info{
-        font-family: Inter;
         font-size: 16px;
         font-weight: 400;
         width: 100%;
